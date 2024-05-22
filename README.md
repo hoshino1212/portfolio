@@ -35,3 +35,6 @@
 
 ■使用予定の技術スタック
 開発環境/Docker フロントエンド/HTML,CSS,Bootstrap バックエンド/Ruby 3.2.2 ,Ruby on Rails 7系 データベース/PostgreSQL, ユーザー認証/sorcery
+
+■画面遷移図
+Figma：https://www.figma.com/design/oQIf3uZWbITrLnLXQego9Q/Untitled?node-id=0%3A1&t=0eH3Q9ZHcEi0eqRY-1
