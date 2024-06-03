@@ -1,0 +1,22 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-password  # パスワードを安全な値に変更
+    volumes:
+      - db-data:/var/lib/mysql
+
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: mysql2://root:my-secret-password@db:3306/myapp_development
+
+volumes:
+  db-data:
