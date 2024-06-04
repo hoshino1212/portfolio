@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 class="text-center">ログイン</h1>
+        <%= form_tag login_path do %>
+          <div class="form-group">
+          <%= label_tag :email, 'メールアドレス' %>
+        </div>
+        <div class="form-group">
+          <%= email_field_tag :email, nil, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag :password, 'パスワード' %>
+        </div>
+        <div class="form-group">
+          <%= password_field_tag :password, nil, class: 'form-control' %>
+        </div>
+
+        <div class="form-group text-center">
+          <%= submit_tag 'ログイン', class: 'btn btn-primary' %>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</div>
