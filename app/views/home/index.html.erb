@@ -1,2 +1,23 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<!-- app/views/home/index.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>禁煙アプリ</title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="container">
+        <div class="header text-center">
+            <h1>禁煙アプリ</h1>
+        </div>
+        <div class="content text-center">
+          <div class="button-group">
+            <a href="<%= login_path %>" class="btn btn-primary btn-lg">ログイン</a>
+            <a href="<%= new_user_path %>" class="btn btn-secondary btn-lg">ユーザー登録</a>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
