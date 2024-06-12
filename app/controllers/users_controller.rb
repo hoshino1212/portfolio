@@ -15,14 +15,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    @smoking_data = @user.smoking_data
-    @smoke_free_duration = calculate_smoke_free_duration
-    @cigarettes_not_smoked = calculate_cigarettes_not_smoked
-    @money_saved = calculate_money_saved
-    @life_extended = calculate_life_extended
+    @smoking_data = @user.smoking_data.first || @user.smoking_data.build
+    if @smoking_data
+      @smoke_free_duration = calculate_smoke_free_duration
+      @cigarettes_not_smoked = calculate_cigarettes_not_smoked
+      @money_saved = calculate_money_saved
+      @life_extended = calculate_life_extended
+    else
+      @smoke_free_duration = @cigarettes_not_smoked = @money_saved = @life_extended = 0
+    end
   end
 
   def edit
+    @smoking_data = @user.smoking_data.first || @user.smoking_data.build
   end
 
   def update
@@ -40,8 +45,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :reminder_time, :start_date, :cigarettes_per_day, :price_per_pack, :lifespan_increase_per_cigarette)
-  end
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :reminder_time, :start_date)
+  end  
 
   def calculate_smoke_free_duration
     return 0 unless @user.start_date
@@ -49,17 +54,17 @@ class UsersController < ApplicationController
   end
 
   def calculate_cigarettes_not_smoked
-    return 0 unless @smoking_data && @user.start_date
-    (@smoke_free_duration / 1.day) * @smoking_data.cigarettes_per_day
+    return 0 unless @smoking_data&.cigarettes_per_day && @user.start_date
+    (@smoke_free_duration / 1.day).to_i * @smoking_data.cigarettes_per_day
   end
 
   def calculate_money_saved
-    return 0 unless @smoking_data && @user.start_date
+    return 0 unless @smoking_data&.price_per_pack && @smoking_data&.cigarettes_per_day
     @cigarettes_not_smoked * (@smoking_data.price_per_pack / 20)
   end
 
   def calculate_life_extended
-    return 0 unless @smoking_data && @user.start_date
+    return 0 unless @smoking_data&.lifespan_increase_per_cigarette && @smoking_data&.cigarettes_per_day
     @cigarettes_not_smoked * @smoking_data.lifespan_increase_per_cigarette
   end
 end

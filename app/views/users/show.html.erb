@@ -13,12 +13,11 @@
       <div class="text-center">
         <%= link_to '編集', edit_user_path(@user), class: 'btn btn-primary' %>
       </div>
-      <div class="user-info">
+      <div class="user-info" style="background-color: lightblue;">
       <p><strong>禁煙時間:</strong> <%= distance_of_time_in_words(@smoke_free_duration) %></p>
       <p><strong>禁煙できた本数:</strong> <%= @cigarettes_not_smoked %> 本</p>
       <p><strong>節約できた金額:</strong> <%= number_to_currency(@money_saved, unit: "¥") %></p>
-      <p><strong>伸びた寿命:</strong> <%= @life_extended %> 日</p>
-      </div>
+    </div>    
     </div>
   </div>
 </div>
