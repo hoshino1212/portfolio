@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_11_115226) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_14_031134) do
   create_table "smoking_data", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "start_date"
     t.decimal "cigarettes_per_day", precision: 10, scale: 2
     t.decimal "price_per_pack", precision: 10, scale: 2
-    t.decimal "lifespan_increase_per_cigarette", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_smoking_data_on_user_id"

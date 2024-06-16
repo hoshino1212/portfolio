@@ -1,21 +1,14 @@
-<%= form_with(model: [ @user, @smoking_data ], local: true) do |form| %>
-    <div class="form-group">
-      <%= form.label :cigarettes_per_day, '1日あたりの喫煙本数' %>
-      <%= form.number_field :cigarettes_per_day, class: 'form-control' %>
-    </div>
-  
-    <div class="form-group">
-      <%= form.label :price_per_pack, '1パックの価格' %>
-      <%= form.number_field :price_per_pack, class: 'form-control', step: '0.01' %>
-    </div>
-  
-    <div class="form-group">
-      <%= form.label :lifespan_increase_per_cigarette, 'タバコ1本あたりの寿命延長（分）' %>
-      <%= form.number_field :lifespan_increase_per_cigarette, class: 'form-control', step: '0.01' %>
-    </div>
-  
-    <div class="form-group text-center">
-      <%= form.submit '更新する', class: 'btn btn-primary' %>
-    </div>
+<!-- app/views/users/_smoking_data_form.html.erb -->
+
+<div class="form-group">
+  <%= form.fields_for :smoking_data, @user.smoking_data do |smoking_data_form| %>
+    <%= smoking_data_form.label :cigarettes_per_day, '1日あたりの喫煙本数' %>
+    <%= smoking_data_form.number_field :cigarettes_per_day, class: 'form-control' %>
   <% end %>
-  
+</div>
+<div class="form-group">
+  <%= form.fields_for :smoking_data, @user.smoking_data do |smoking_data_form| %>
+    <%= smoking_data_form.label :price_per_pack, '1パックの価格' %>
+    <%= smoking_data_form.number_field :price_per_pack, class: 'form-control' %>
+  <% end %>
+</div>

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_smoking_data, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -15,27 +16,36 @@ class UsersController < ApplicationController
   end
 
   def show
-    @smoking_data = @user.smoking_data.first || @user.smoking_data.build
-    if @smoking_data
-      @smoke_free_duration = calculate_smoke_free_duration
-      @cigarettes_not_smoked = calculate_cigarettes_not_smoked
-      @money_saved = calculate_money_saved
-      @life_extended = calculate_life_extended
-    else
-      @smoke_free_duration = @cigarettes_not_smoked = @money_saved = @life_extended = 0
-    end
+    @user = User.find(params[:id])
+    @smoking_data = @user.smoking_data || @user.build_smoking_data
+    @smoke_free_duration = calculate_smoke_free_duration
+    @cigarettes_not_smoked = calculate_cigarettes_not_smoked
+    @money_saved = calculate_money_saved
   end
+  
 
   def edit
-    @smoking_data = @user.smoking_data.first || @user.smoking_data.build
+    @user = User.find(params[:id])
+    @smoking_data = @user.smoking_data || @user.build_smoking_data
   end
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: 'ユーザー情報が更新されました。'
+      # ユーザー情報が更新された後に、smoking_data の更新を試みる
+      if @user.smoking_data.update(smoking_data_params)
+        redirect_to user_path(@user), notice: 'ユーザー情報が更新されました。'
+      else
+        render :edit
+      end
     else
       render :edit
     end
+  end
+  
+
+  def destroy
+    @user.destroy
+    redirect_to users_path, notice: 'ユーザーが削除されました。'
   end
 
   private
@@ -44,9 +54,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def set_smoking_data
+    @smoking_data = @user.smoking_data || @user.build_smoking_data
+  end
+
+  def smoking_data_params
+    params.require(:user).require(:smoking_data_attributes).permit(:start_date, :cigarettes_per_day, :price_per_pack)
+  end
+
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :reminder_time, :start_date)
-  end  
+    params.require(:user).permit(:username, :email, :reminder_time,
+                                 smoking_data_attributes: [:id, :start_date, :cigarettes_per_day, :price_per_pack])
+  end
 
   def calculate_smoke_free_duration
     return 0 unless @user.start_date
@@ -61,10 +80,5 @@ class UsersController < ApplicationController
   def calculate_money_saved
     return 0 unless @smoking_data&.price_per_pack && @smoking_data&.cigarettes_per_day
     @cigarettes_not_smoked * (@smoking_data.price_per_pack / 20)
-  end
-
-  def calculate_life_extended
-    return 0 unless @smoking_data&.lifespan_increase_per_cigarette && @smoking_data&.cigarettes_per_day
-    @cigarettes_not_smoked * @smoking_data.lifespan_increase_per_cigarette
   end
 end

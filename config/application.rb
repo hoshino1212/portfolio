@@ -20,5 +20,9 @@ module Myapp
     # Webpacker configuration
     config.webpacker.check_yarn_integrity = false
     config.webpacker.compile = false
+
+    # Add the time zone configuration here
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
   end
 end

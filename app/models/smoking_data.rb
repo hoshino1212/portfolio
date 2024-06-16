@@ -4,7 +4,6 @@ class SmokingData < ApplicationRecord
     validates :start_date, presence: true
     validates :cigarettes_per_day, presence: true, numericality: { greater_than_or_equal_to: 0 }
     validates :price_per_pack, presence: true, numericality: { greater_than_or_equal_to: 0 }
-    validates :lifespan_increase_per_cigarette, presence: true, numericality: { greater_than_or_equal_to: 0 }
   end
   
   
