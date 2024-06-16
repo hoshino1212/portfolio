@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_14_031134) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_16_023124) do
   create_table "smoking_data", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "start_date"
@@ -30,6 +30,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_14_031134) do
     t.string "username"
     t.datetime "reminder_time"
     t.datetime "start_date"
+    t.string "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.integer "access_count_to_reset_password_page", default: 0
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
   add_foreign_key "smoking_data", "users"

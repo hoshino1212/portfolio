@@ -12,4 +12,6 @@ class User < ApplicationRecord
 
   validates :reminder_time, presence: true
   validates :start_date, presence: true
+
+  validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
 end
