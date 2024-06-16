@@ -30,9 +30,31 @@
     <div class="form-group">
       <%= form.password_field :password_confirmation, class: 'form-control' %>
     </div>
+
+    <div class="form-group">
+    <%= form.label :reminder_time, 'リマインダー時間' %>
+    <%= form.datetime_local_field :reminder_time, class: 'form-control' %>
+  </div>
+
+  <!-- 開始日の入力フィールド -->
+  <div class="form-group">
+    <%= form.label :start_date, '開始日' %>
+    <%= form.datetime_local_field :start_date, class: 'form-control' %>
+  </div>
   
     <div class="form-group text-center">
       <%= form.submit '登録する', class: 'btn btn-primary' %>
     </div>
+
+    <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
+<% end %>
   

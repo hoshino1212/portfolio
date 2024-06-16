@@ -1,0 +1,14 @@
+<!-- app/views/users/_smoking_data_form.html.erb -->
+
+<div class="form-group">
+  <%= form.fields_for :smoking_data, @user.smoking_data do |smoking_data_form| %>
+    <%= smoking_data_form.label :cigarettes_per_day, '1日あたりの喫煙本数' %>
+    <%= smoking_data_form.number_field :cigarettes_per_day, class: 'form-control' %>
+  <% end %>
+</div>
+<div class="form-group">
+  <%= form.fields_for :smoking_data, @user.smoking_data do |smoking_data_form| %>
+    <%= smoking_data_form.label :price_per_pack, '1パックの価格' %>
+    <%= smoking_data_form.number_field :price_per_pack, class: 'form-control' %>
+  <% end %>
+</div>

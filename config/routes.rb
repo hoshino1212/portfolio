@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   # User routes
-  resources :users, only: [:new, :create, :show]
+  resources :users do
+    resources :smoking_data, only: [:new, :create, :edit, :update, :destroy]
+  end
 
   # Session routes
   get 'login', to: 'sessions#new', as: :login
