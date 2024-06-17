@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Myapp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Myapp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  
+  <!-- BootstrapのCSSを読み込む -->
+  <%= stylesheet_link_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" %>
+  
 
-  <body>
+</head>
+
+<body>
+  <header>
+    <!-- ヘッダー部分のコード -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+          <% if logged_in? %>
+          <%= link_to 'ログアウト', logout_path, class: 'dropdown-item', data: { turbo_method: :delete } %>
+        <% else %>
+          <%= link_to "新規登録", new_user_path, class: "nav-link" %>
+          <%= link_to "ログイン", login_path, class: "nav-link" %>
+        <% end %>        
+          </div>
+        </div>
+      </nav>
+</header>
+
+  <main class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
     <%= yield %>
-  </body>
+  </main>
+
+  <!-- BootstrapのJavaScriptを読み込む -->
+  <%= javascript_include_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" %>
+</body>
 </html>

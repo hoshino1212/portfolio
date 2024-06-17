@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get 'password_resets/update'
   root 'home#index'
 
-  
   # User routes
   resources :users do
     resources :smoking_data, only: [:new, :create, :edit, :update, :destroy]
@@ -15,5 +14,5 @@ Rails.application.routes.draw do
   # Session routes
   get 'login', to: 'sessions#new', as: :login
   post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy', as: :logout
+  get 'logout', to: 'sessions#destroy', as: :logout
 end
