@@ -1,21 +1,16 @@
-.form-group {
-    margin-bottom: 15px;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
-  .form-control {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  .btn-primary {
-    display: block;
-    width: 100%;
-    max-width: 200px;
-    margin: 20px auto;
-  }
-  
+// app/assets/stylesheets/application.scss
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 画面全体の高さを占めるための設定、必要に応じて調整 */
+}
+
+.user-info {
+  background-color: lightblue;
+  padding: 10px;
+  margin-top: 20px;
+  max-width: 300px; /* 背景を小さくするための最大幅設定 */
+  text-align: center; /* コンテンツを中央寄せにする */
+}

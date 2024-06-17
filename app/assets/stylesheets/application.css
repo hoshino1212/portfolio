@@ -1,5 +1,7 @@
 @import "bootstrap";
 @import "users";
+@import "application.bootstrap";
+@import "top";
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -17,29 +19,7 @@
  */
 
 /* 共通のスタイル */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
 
-.container {
-    text-align: center;
-}
-
-.header {
-    margin-bottom: 50px;
-}
-
-.button-group {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
 
 /* スマホ向けスタイル */
 @media (max-width: 768px) {
