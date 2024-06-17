@@ -1,23 +1,25 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <h1 class="text-center">マイデータ</h1>
+      <h1 class="text-center mt-4">マイデータ</h1>
       
-      <div class="user-info">
+      <div class="user-info text-center mt-4">
         <p><strong>ユーザー名:</strong> <%= @user.username %></p>
         <p><strong>メールアドレス:</strong> <%= @user.email %></p>
         <p><strong>リマインダー時間:</strong> <%= @user.reminder_time %></p>
         <p><strong>禁煙開始時間:</strong> <%= @user.start_date %></p>
       </div>
       
-      <div class="text-center">
+      <div class="text-center mt-4"> <!-- mt-4 を追加 -->
         <%= link_to '編集', edit_user_path(@user), class: 'btn btn-primary' %>
       </div>
-      <div class="user-info" style="background-color: lightblue;">
-      <p><strong>禁煙時間:</strong> <%= (@smoke_free_duration / 1.day).to_i %> 日</p>
-      <p><strong>禁煙できた本数:</strong> <%= @cigarettes_not_smoked %> 本</p>
-      <p><strong>節約できた金額:</strong> <%= number_to_currency(@money_saved, unit: "¥") %></p>
-    </div>    
+      
+      <div class="user-info text-center" style="background-color: lightblue; padding: 10px; margin-top: 20px;">
+        <p><strong>禁煙時間:</strong> <%= (@smoke_free_duration / 1.day).to_i %> 日</p>
+        <p><strong>禁煙できた本数:</strong> <%= @cigarettes_not_smoked %> 本</p>
+        <p><strong>節約できた金額:</strong> <%= number_to_currency(@money_saved, unit: "¥") %></p>
+      </div>
+      
     </div>
   </div>
 </div>

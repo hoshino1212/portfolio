@@ -3,3 +3,6 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Rails from "@rails/ujs"
+import '~bootstrap/scss/bootstrap';
+Rails.start()
