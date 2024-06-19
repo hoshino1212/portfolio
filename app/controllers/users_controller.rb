@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      redirect_to user_path(@user), notice: 'ユーザー登録が完了しました。'
+      redirect_to user_path(@user), flash: { success: 'ユーザー登録が完了しました' } 
     else
       render :new
     end
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       # ユーザー情報が更新された後に、smoking_data の更新を試みる
       if @user.smoking_data.update(smoking_data_params)
-        redirect_to user_path(@user), notice: 'ユーザー情報が更新されました。'
+        redirect_to user_path(@user), flash: { success: 'ユーザー情報を更新しました' } 
       else
         render :edit
       end

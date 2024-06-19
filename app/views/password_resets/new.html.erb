@@ -2,8 +2,23 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <h1 class="text-center">パスワードリセット申請</h1>
-<%= form_with url: password_resets_path do |f| %>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-    <%= f.submit '申請' %>
-<% end %>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+
+            <%= form_with url: password_resets_path, local: true do |f| %>
+              <div class="form-group">
+                <%= f.label :email %>
+                <%= f.email_field :email, class: "form-control" %>
+              </div>
+              <div class="form-group text-center">
+                <%= f.submit '申請', class: "btn btn-primary" %>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
