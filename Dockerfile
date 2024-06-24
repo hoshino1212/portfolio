@@ -13,6 +13,7 @@ RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
 # アプリケーションのディレクトリを作成
 RUN mkdir /myapp
 WORKDIR /myapp
+RUN apt-get install -y cron
 
 # GemfileとGemfile.lockをコピー
 COPY Gemfile /myapp/Gemfile
@@ -23,3 +24,6 @@ RUN bundle install
 
 # アプリケーションのソースコードをコピー
 COPY . /myapp
+
+# デフォルトのコマンドを設定
+CMD ["bash", "-c", "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"]

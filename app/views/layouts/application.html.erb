@@ -34,17 +34,5 @@
   <!-- BootstrapのJavaScriptを読み込む -->
   <%= javascript_include_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" %>
 
-  <!-- 自動でフラッシュメッセージを消すためのJavaScript -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(function() {
-        var alerts = document.querySelectorAll('.alert');
-        alerts.forEach(function(alert) {
-          var alertInstance = new bootstrap.Alert(alert);
-          alertInstance.close();
-        });
-      }, 5000); // 5秒後にメッセージを消す
-    });
-  </script>
 </body>
 </html>

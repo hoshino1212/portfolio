@@ -6,8 +6,7 @@
       <div class="user-info text-center mt-4">
         <p><strong>ユーザー名:</strong> <%= @user.username %></p>
         <p><strong>メールアドレス:</strong> <%= @user.email %></p>
-        <p><strong>リマインダー時間:</strong> <%= @user.reminder_time %></p>
-        <p><strong>禁煙開始時間:</strong> <%= @user.start_date %></p>
+        <p><strong>禁煙開始時間:</strong> <%= @user.start_date.strftime("%Y年%m月%d日 %H時%M分") %></p>
       </div>
       
       <div class="text-center mt-4"> <!-- mt-4 を追加 -->
@@ -17,7 +16,7 @@
       <div class="user-info text-center" style="background-color: lightblue; padding: 10px; margin-top: 20px;">
         <p><strong>禁煙時間:</strong> <%= (@smoke_free_duration / 1.day).to_i %> 日</p>
         <p><strong>禁煙できた本数:</strong> <%= @cigarettes_not_smoked %> 本</p>
-        <p><strong>節約できた金額:</strong> <%= number_to_currency(@money_saved, unit: "¥") %></p>
+        <p><strong>節約できた金額:</strong> <%= number_to_currency(@money_saved, unit: "円", format: "%n%u", precision: 0) %></p>
       </div>
       
     </div>

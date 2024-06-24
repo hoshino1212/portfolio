@@ -53,6 +53,8 @@ gem 'oauth', '~> 0.6'
 gem 'oauth2', '~> 2.0'
 gem 'sorcery', "0.17.0"
 gem 'config'
+gem 'whenever', require: false
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

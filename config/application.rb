@@ -24,5 +24,7 @@ module Myapp
     # Add the time zone configuration here
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
+    
+    config.hosts << "kinen-app.fly.dev"
   end
 end

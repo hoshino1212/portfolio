@@ -1,0 +1,10 @@
+Subject: 禁煙生活のお知らせ
+
+禁煙生活、お疲れ様です！
+
+<%= @user.username %>さんの現在の記録は以下の通りです：
+- 禁煙時間: <%= @smoking_data.days_without_smoking %>日間
+- 禁煙できた本数: <%= @smoking_data.cigarettes_not_smoked %>本
+- 節約できた金額: <%= number_to_currency(@smoking_data.money_saved.to_i, unit: "円", format: "%n%u", precision: 0) %>です！
+
+この調子で頑張りましょう！
