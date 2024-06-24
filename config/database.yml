@@ -1,10 +1,11 @@
 default: &default
   adapter: mysql2
-  encoding: utf8mb4
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  encoding: utf8
+  pool: 5
   username: root
-  password: password
-  host: db
+  password: my-secret-password
+  host: localhost  # ローカル環境では 'localhost' が使われる場合が多い
+  port: 3306       # ローカルのMySQLコンテナのポート番号
 
 development:
   <<: *default
@@ -17,5 +18,7 @@ test:
 production:
   <<: *default
   database: myapp_production
-  username: myapp
-  password: <%= ENV["MYAPP_DATABASE_PASSWORD"] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: <%= ENV['DATABASE_PORT'] %>

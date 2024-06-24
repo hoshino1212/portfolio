@@ -12,10 +12,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.reminder_enabled = true # すべてのユーザーにデフォルトでリマインダーを有効にする
     if @user.save
       log_in @user
       redirect_to user_path(@user), flash: { success: 'ユーザー登録が完了しました' } 
     else
+      flash.now[:alert] = 'ユーザー登録に失敗しました。入力内容を確認してください。'
       render :new
     end
   end
@@ -27,7 +29,6 @@ class UsersController < ApplicationController
     @cigarettes_not_smoked = calculate_cigarettes_not_smoked
     @money_saved = calculate_money_saved
   end
-  
 
   def edit
     @user = User.find(params[:id])
@@ -35,18 +36,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      # ユーザー情報が更新された後に、smoking_data の更新を試みる
-      if @user.smoking_data.update(smoking_data_params)
-        redirect_to user_path(@user), flash: { success: 'ユーザー情報を更新しました' } 
-      else
-        render :edit
-      end
+    if @user.update(user_params) && @user.smoking_data.update(smoking_data_params)
+      redirect_to user_path(@user), flash: { success: 'ユーザー情報を更新しました' }
     else
       render :edit
     end
   end
-  
 
   def destroy
     @user.destroy
@@ -68,10 +63,9 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :reminder_time, :start_date,
-                                 :password, :password_confirmation,
+    params.require(:user).permit(:username, :email, :start_date, :password, :password_confirmation,
                                  smoking_data_attributes: [:id, :start_date, :cigarettes_per_day, :price_per_pack])
-  end  
+  end
 
   def calculate_smoke_free_duration
     return 0 unless @user.start_date

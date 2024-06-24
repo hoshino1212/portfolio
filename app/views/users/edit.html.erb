@@ -20,14 +20,8 @@
             <%= form.email_field :email, class: 'form-control' %>
           </div>
         </div>
-      
+        
         <div class="form-group">
-          <div>
-            <%= form.label :reminder_time, 'リマインダー時間' %>
-          </div>
-          <div>
-            <%= form.datetime_select :reminder_time, class: 'form-control' %>
-          </div>
         </div>
         
         <%= form.fields_for :smoking_data do |smoking_data_fields| %>

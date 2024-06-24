@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_16_023124) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_21_181148) do
   create_table "smoking_data", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "start_date"
@@ -28,7 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_16_023124) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
-    t.datetime "reminder_time"
     t.datetime "start_date"
     t.string "reset_password_token"
     t.datetime "reset_password_token_expires_at"
