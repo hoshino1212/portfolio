@@ -12,7 +12,7 @@ RUN apt-get update -qq \
 && apt-get install -y build-essential libpq-dev libssl-dev nodejs yarn python3 cron
 RUN service cron start
 RUN mkdir /portfolio
-WORKDIR portfolio
+WORKDIR /portfolio
 RUN gem install bundler:2.3.17
 COPY Gemfile /portfolio/Gemfile
 COPY Gemfile.lock /portfolio/Gemfile.lock
