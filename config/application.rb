@@ -25,6 +25,6 @@ module Myapp
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
     
-    config.hosts << "kinen-app.fly.dev"
+    config.hosts << "portfolio-o9vb.onrender.com"
   end
 end
