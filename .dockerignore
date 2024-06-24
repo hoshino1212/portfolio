@@ -41,10 +41,3 @@ yarn-error.log
 **/config/settings.local.yml
 **/config/settings/*.local.yml
 **/config/environments/*.local.yml
-
-# flyctl launch added from node_modules/loglevel/vendor/grunt-template-jasmine-requirejs/tasks/.gitignore
-# Ignore everything in this directory
-node_modules/loglevel/vendor/grunt-template-jasmine-requirejs/tasks/**/*
-# Except this file
-!node_modules/loglevel/vendor/grunt-template-jasmine-requirejs/tasks/**/.gitignore
-fly.toml
